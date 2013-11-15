@@ -1,0 +1,29 @@
+
+body { 
+  padding-top: 65px; 
+  font-size: 16px;
+  padding-bottom: 40px;
+}
+
+#account {
+  max-width: 420px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+
+#changepasswordbutton	{
+ padding-top : 30px;
+}
+
+.row	{
+	padding-top : 15px;
+}
+
+.heading	{
+	border-bottom: 1px solid; 
+}
+.first {
+	padding-top : 30px;
+}
+

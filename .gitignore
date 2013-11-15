@@ -1,0 +1,26 @@
+# Main Config file
+config/config.js
+
+# Images and logos
+public/assets/images/**/*
+public/assets/images/*
+public/assets/images/
+
+# Database folder
+db/**/*
+db/*
+db/
+
+# Tests Folder - Under Construction
+test1/**/*
+test1/*
+test1/
+
+# External Modules
+node_modules/**/*
+node_modules/*
+node_modules/
+
+# Self Signed Certificates
+certs/*
+certs/

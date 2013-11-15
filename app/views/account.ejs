@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title><%= title %></title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/account.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+    
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand"><img src="assets/images/logo.png"><%= title %></a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav navbar-right">
+             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= user.username %> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                   <li><a href="#">Profile</a></li>
+                   <li><a href="/logout">Sign Out</a></li>
+                </ul>
+             </li>
+           </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container" id="account">	
+        <div class="row heading">
+              <div class="col-md-6 col-md-offset-3">
+				  <h2>Account</h2>	
+				  <br/>
+		      </div>
+		</div>
+        <div class="row first">
+              <div class="col-md-4 ">
+				  Username
+		      </div>
+              <div class="col-md-8 ">
+				  : <%= user.username %>
+		      </div>
+		</div>
+        <div class="row ">
+              <div class="col-md-4 ">
+				  Name 
+		      </div>
+              <div class="col-md-8 ">
+				   : <%= user.fullName %>
+		      </div>
+		</div>
+        <div class="row ">
+              <div class="col-md-4 ">
+				  Primary Mail id
+		      </div>
+              <div class="col-md-8 ">
+				   : <%= user.email %>
+		      </div>
+		</div>
+		<div id="changepasswordbutton">
+			<a href="/changepassword" class="btn btn-primary btn-lg btn-block" role="button">Change Password</a>
+		</div>
+	</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+ 
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
