@@ -9,8 +9,10 @@ Test Deployment
 Here is how you make a test deployment:
 
  ```
-$ git clone 
+$ git clone https://github.com/haricm/authserver.git 
 $ cd authserver
+$ mkdir data
+$ mkdir data/db
 $ mongod --dbpath data/db
 Open new console tab
 $ cp config/config-sample.js config/config.js
