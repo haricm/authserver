@@ -51,24 +51,32 @@ exports.activate = function (req, res) {
 	var url_parts = url.parse(req.url,true);
 	UserClaim.findOne( { md5sum : url_parts.query.md5 }, function (err, userclaims) { 
         if (err) {
-            return done(err);
+			console.log("Error");
+			console.log(err);
         }
-        if (!userclaims) {
-            return done(null, false);
+        else if (!userclaims) {
+			console.log("Record Not Found");
         }
-	    if (!userclaims.activate(url_parts.query.secret)) { 
-            return done(null, false);
+	    else if (!userclaims.activate(url_parts.query.secret)) { 
+            console.log("Wrong Verification Code");
         }
-        User.update({_id : userclaims.userid}, {userStatus : 1} , function(err, numberAffected, rawResponse) {
-			if(numberAffected===0)	{
-				console.log("Updating User failed");
-			} else
-			{
-				userclaims.remove();
-			}
-		})
+        else
+        {
+			User.update({_id : userclaims.userid}, {userStatus : 1} , function(err, numberAffected, rawResponse) {
+				if(err)
+				{
+					console.log(err);
+				}
+				else if(numberAffected===0)	{
+					console.log("Updating User failed");
+				} else
+				{
+					userclaims.remove();
+				}
+			});
+		}
     });
-    req.redirect('/logout');
+    res.redirect('/login');
 };
 /**
  * GET https://localhost:8000/resetpassword
@@ -85,9 +93,11 @@ exports.resetPassword = function (req, res)	{
 	var newpassword = utils.uid(8);
 	User.findOne({email : req.body.email}).exec(function (err, user) {
 		if(err )	{
-			req.redirect('/resetpassword');
+			console.log("Requested Document not found");
+			res.redirect('/resetpassword');
 		} else if(!user)   {
-			req.redirect('/resetpassword');
+			console.log("Wrong Email Address");
+			res.redirect('/resetpassword');
 	    }  else  {
 		   user.password = newpassword;
 		   user.save(function(err)	{
@@ -121,7 +131,8 @@ exports.changePassword = function (req, res) { //req.user.username
 	} else {
         User.findOne({ username: req.user.username }).exec(function (err, user) {
 			if(err )	{
-				req.redirect('/changepassword');
+				console.log("Requested Document not found");
+				res.redirect('/changepassword');
 		    } 
 			if(user.authenticate(req.body.password))	{
 				user.password = req.body.password1;

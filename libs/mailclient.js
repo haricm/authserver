@@ -7,7 +7,6 @@ var env = process.env.NODE_ENV || 'development'
 
 
 var sendEmailVerifyLink = function(fullName, email, md5sum, verificationCode)	{
-	    console.log(fullName);
 	    var str =  "<!DOCTYPE html><p> Hello <%= fullName %> , </p><p>	Welcome to <%- site.title %>! Before you can use your account you will need to activate it by visiting the following URL: </p><p><a href=\"https://<%- site.host %>:<%- site.port %>/activate/?md5=<%- md5sum %>&secret=<%- verificationCode %>\">https://<%- site.host %>:<%- site.port %>/activate/?md5=<%- md5sum %>&secret=<%- verificationCode %></a> </p><p> If you did not sign up, you may safely ignore this email. </p>";
 		// Create a SMTP transport object
 		var transport = nodemailer.createTransport("SMTP", {
