@@ -20,7 +20,7 @@ var passport = require('passport')
 passport.use(new LocalStrategy(
     function (username, password, done) {
 	          db.user.findOne( {username : username}, function (err, user) { 
-
+console.log(user);
             if (err) {
                 return done(err);
             }

@@ -1,3 +1,8 @@
+var env = process.env.NODE_ENV || 'development'
+    , config = require('../../config/config')[env]
+ 
+var clients = config.clients;
+/*    
 var clients = [
     {
         id: '1',
@@ -19,7 +24,7 @@ var clients = [
         trustedClient: true
     }
 ];
-
+*/
 
 exports.find = function(id, done) {
   for (var i = 0, len = clients.length; i < len; i++) {

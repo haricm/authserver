@@ -74,7 +74,8 @@ app.get('/oauth/tokeninfo', oauth2.tokeninfo);
 
 app.get('/api/userinfo', user.info);
 app.get('/api/clientinfo', client.info);
-     
+
+
 //Self-Signed Certificates
 var privatekey = fs.readFileSync('certs/privatekey.pem');
 var certificate = fs.readFileSync('certs/certificate.pem');
