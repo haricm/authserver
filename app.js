@@ -54,6 +54,13 @@ app.use(function(err, req, res, next) {
 
 require('./config/passport');                           // Passport configuration
 
+app.all('*',function(req, res, next){ 
+  console.log('Received a request at authserver');
+  //console.log(req.headers.host);
+  console.log(req.url);
+  next(); 
+}); 
+
 app.get('/', site.index);
 app.get('/login', site.loginForm);
 app.post('/login', site.login);
@@ -70,8 +77,10 @@ app.post('/signup', site.signUp);
 app.get('/dialog/authorize', oauth2.authorization);
 app.post('/dialog/authorize/decision', oauth2.decision);
 app.post('/oauth/token', oauth2.token);
-app.get('/oauth/tokeninfo', oauth2.tokeninfo);
-
+app.get('/api/tokeninfo', oauth2.tokeninfo);
+//app.get('/oauth/tokeninfo', function(req,res) {
+//    res.send("success");
+//});
 app.get('/api/userinfo', user.info);
 app.get('/api/clientinfo', client.info);
 

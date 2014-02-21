@@ -1,6 +1,11 @@
 {
     "name": "authserver",
     "version": "0.1.0",
+    "repository" :
+    { 
+        "type" : "git", 
+        "url" : "https://github.com/haricm/authserver.git"
+    },
     "dependencies": {
         "express": "3.x.x",
         "ejs": "0.7.x",

@@ -330,31 +330,38 @@ exports.token = [
  *     "error": "invalid_token"
  * }
  */
-exports.tokeninfo = [
-    function (req, res) {
+exports.tokeninfo = function (req, res) {
+        console.log("Responding to access token request")
         if (req.query.access_token) {
             db.accessTokens.find(req.query.access_token, function (err, token) {
                 if (err || !token) {
+                    console.log("Error or Invalid token");
                     res.status(400);
                     res.json({ error: "invalid_token" });
                 } else if(new Date() > token.expirationDate) {
+                    console.log("token expired");
                     res.status(400);
                     res.json({ error: "invalid_token" });
                 }
                 else {
                     db.clients.find(token.clientID, function (err, client) {
                         if (err || !client) {
+                            console.log("Error or invalid client");
                             res.status(400);
                             res.json({ error: "invalid_token"});
                         } else {
+                            //we can disable this expiration date thing
                             if(token.expirationDate) {
                                 var expirationLeft =  Math.floor((token.expirationDate.getTime() - new Date().getTime()) / 1000);
                                 if(expirationLeft <= 0) {
+                                    console.log("token expired. use refresh token");
                                     res.json({ error: "invalid_token"});
                                 } else {
+                                    console.log("Sending json response successfully");
                                     res.json({ audience: client.clientId, expires_in: expirationLeft});
                                 }
                             } else {
+                                console.log("Sending json response successfully");
                                 res.json({audience: client.clientId })
                             }
                         }
@@ -363,10 +370,10 @@ exports.tokeninfo = [
             });
         } else {
             res.status(400);
+            console.log("Pass access token as a parameter properly");
             res.json({ error: "invalid_token"});
         }
-    }
-];
+    };
 
 
 

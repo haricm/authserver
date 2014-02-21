@@ -19,8 +19,8 @@ var passport = require('passport')
  */
 passport.use(new LocalStrategy(
     function (username, password, done) {
-	          db.user.findOne( {username : username}, function (err, user) { 
-console.log(user);
+	        db.user.findOne( {username : username}, function (err, user) { 
+            console.log(user);
             if (err) {
                 return done(err);
             }
@@ -59,6 +59,7 @@ passport.deserializeUser(function (id, done) {
  */
 passport.use(new BasicStrategy(
     function (username, password, done) {
+        console.log("Checking whether its a registered client or not #!");
         db.clients.findByClientId(username, function (err, client) {
             if (err) {
                 return done(err);
@@ -83,6 +84,7 @@ passport.use(new BasicStrategy(
  */
 passport.use(new ClientPasswordStrategy(
     function (clientId, clientSecret, done) {
+        console.log("Checking whether its a registered client or not #2");
         db.clients.findByClientId(clientId, function (err, client) {
             if (err) {
                 return done(err);
@@ -108,6 +110,7 @@ passport.use(new ClientPasswordStrategy(
  */
 passport.use(new BearerStrategy(
     function (accessToken, done) {
+        console.log("BearerStrategy");
         db.accessTokens.find(accessToken, function (err, token) {
             if (err) {
                 return done(err);
